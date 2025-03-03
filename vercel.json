@@ -1,8 +1,26 @@
 {
-    "functions": {
-      "api/**/*": {
-        "runtime": "nodejs16.x" 
+    "version": 2,
+    "builds": [
+      {
+        "src": "next.config.js",
+        "use": "@vercel/next"
+      },
+      {
+        "src": "public/**/*",
+        "use": "@vercel/static"
       }
-    }
+    ],
+    "functions": {
+      "api/**/*.ts": {
+        "runtime": "nodejs16.x"
+      }
+    },
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "/",
+        "status": 200
+      }
+    ]
   }
   
