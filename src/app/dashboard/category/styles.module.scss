@@ -28,3 +28,26 @@
   color: var(--white);
   border: 1px solid var(--gray-100)
 }
+
+.button {
+  height: 40px;
+  width: 100%;
+  border-radius: 8px;
+  border: 0;
+  background-color: #28a745;
+  font-weight: bold;
+  font-size: 16px;
+  color: var(--white);
+
+  &.edit {
+    background-color: var(--blue-500);
+  }
+
+  &.delete {
+    background-color: var(--red-500);
+  }
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+}
