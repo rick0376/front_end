@@ -1,0 +1,76 @@
+.container {
+  max-width: 720px;
+  margin: 20px auto;
+  padding: 0 16px;
+
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    color: var(--white);
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  color: var(--white);
+
+  th,
+  td {
+    text-align: center;
+    padding: 12px 16px;
+    border: 1px solid var(--gray-100);
+    height: 80px; // Define a altura mínima das células
+    vertical-align: middle; // Garante que o conteúdo fique centralizado verticalmente
+  }
+
+  th {
+    background-color: var(--dark-800);
+    color: var(--white);
+  }
+
+  td {
+    background-color: var(--dark-900);
+    color: var(--gray-200);
+  }
+
+  tr:hover {
+    background-color: var(--dark-700);
+  }
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  height: 100%;
+
+  button {
+    height: 40px;
+    width: 50%;
+    border-radius: 8px;
+    border: 0;
+    background-color: #28a745;
+    font-weight: bold;
+    font-size: 16px;
+    color: var(--white);
+
+    &.edit {
+      background-color: var(--blue-500);
+    }
+
+    &.delete {
+      background-color: var(--red-500);
+    }
+
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+}
