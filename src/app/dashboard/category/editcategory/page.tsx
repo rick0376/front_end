@@ -3,7 +3,6 @@
 import styles from './styles.module.scss';
 import { useEffect, useState } from 'react';
 import { api } from '@/services/api';
-import { Button } from "@/app/dashboard/components/button"
 import { getCookieClient } from '@/lib/cookieClient';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
