@@ -1,5 +1,4 @@
 import styles from './styles.module.scss'
-//import { Button } from "@/app/dashboard/components/button"
 import { api } from '@/services/api'
 import { redirect } from 'next/navigation'
 import { getCookieServer } from '@/lib/cookieServer'
@@ -32,7 +31,6 @@ export default function Category() {
     redirect("/dashboard")
 
   }
-
 
   return (
     <main className={styles.container}>
