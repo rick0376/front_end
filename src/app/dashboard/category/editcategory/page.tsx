@@ -1,5 +1,7 @@
 "use client"
 
+export const runtime = "nodejs";  // 👈 Força o ambiente Node.js
+
 import styles from './styles.module.scss';
 import { useEffect, useState } from 'react';
 import { api } from '@/services/api';
@@ -12,14 +14,6 @@ interface Category {
   name: string;
 }
 
-interface ButtonProps {
-  name: string;
-  onClick: () => void; // Aceitando a função onClick
-}
-
-export function ActionButton({ name, onClick }: ButtonProps) {
-  return <button onClick={onClick}>{name}</button>;
-}
 export default function ManageCategories() {
   const [categories, setCategories] = useState<Category[]>([]);
   const router = useRouter();
