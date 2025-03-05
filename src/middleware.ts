@@ -10,14 +10,15 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  const token: string | null = getCookieServer(); // Garantir que pode ser string ou null
+  const token = getCookieServer(); // Pode ser string | null
 
   if (pathname.startsWith('/dashboard')) {
     if (!token) {
       return NextResponse.redirect(new URL('/', req.url));
     }
 
-    const isValid: boolean = await validateToken(token);
+    const isValid = await validateToken(token); // Erro acontece aqui
+
     console.log(isValid);
 
     if (!isValid) {
@@ -28,8 +29,9 @@ export async function middleware(req: NextRequest) {
   return NextResponse.next();
 }
 
+// 🚀 Função corrigida com a tipagem correta
 async function validateToken(token: string | null): Promise<boolean> {
-  if (!token) return false;
+  if (!token) return false; // Se for null, já retorna false
 
   try {
     await api.get('/me', {
