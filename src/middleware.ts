@@ -10,15 +10,16 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  // ⚠️ Aqui estava o problema! Agora usamos `await` para obter o valor correto.
-  const token = await getCookieServer(); 
+  // 🛠 Correção: Aguarda a Promise para pegar o valor real da string.
+  const token: string | null = await getCookieServer(); 
 
   if (pathname.startsWith('/dashboard')) {
     if (!token) {
       return NextResponse.redirect(new URL('/', req.url));
     }
 
-    const isValid = await validateToken(token);
+    // 🛠 Correção: Agora `validateToken` aceita `string | null` corretamente.
+    const isValid: boolean = await validateToken(token);
 
     console.log(isValid);
 
@@ -30,7 +31,7 @@ export async function middleware(req: NextRequest) {
   return NextResponse.next();
 }
 
-// ✅ Agora esta função aceita `string | null` e sempre retorna um boolean
+// 🛠 Correção: Ajustado o tipo da função para aceitar `string | null`
 async function validateToken(token: string | null): Promise<boolean> {
   if (!token) return false; // Se for null, já retorna false.
 
@@ -46,4 +47,3 @@ async function validateToken(token: string | null): Promise<boolean> {
     return false;
   }
 }
-
