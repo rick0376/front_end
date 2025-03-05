@@ -28,6 +28,7 @@ export async function middleware(req: NextRequest){
 
 }
 
+/*
 async function validateToken(token: string){
   if (!token) return false;
 
@@ -40,6 +41,22 @@ async function validateToken(token: string){
 
     return true;
   }catch(err){
+    return false;
+  }
+}*/
+
+async function validateToken(token: string): Promise<boolean> {
+  if (!token) return false;
+
+  try {
+    await api.get("/me", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    return true;
+  } catch (err) {
     return false;
   }
 }
