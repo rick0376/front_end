@@ -10,14 +10,15 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  const token = getCookieServer(); // Pode ser string | null
+  // ⚠️ Aqui estava o problema! Agora usamos `await` para obter o valor correto.
+  const token = await getCookieServer(); 
 
   if (pathname.startsWith('/dashboard')) {
     if (!token) {
       return NextResponse.redirect(new URL('/', req.url));
     }
 
-    const isValid = await validateToken(token); // Erro acontece aqui
+    const isValid = await validateToken(token);
 
     console.log(isValid);
 
@@ -29,9 +30,9 @@ export async function middleware(req: NextRequest) {
   return NextResponse.next();
 }
 
-// 🚀 Função corrigida com a tipagem correta
+// ✅ Agora esta função aceita `string | null` e sempre retorna um boolean
 async function validateToken(token: string | null): Promise<boolean> {
-  if (!token) return false; // Se for null, já retorna false
+  if (!token) return false; // Se for null, já retorna false.
 
   try {
     await api.get('/me', {
@@ -45,3 +46,4 @@ async function validateToken(token: string | null): Promise<boolean> {
     return false;
   }
 }
+
