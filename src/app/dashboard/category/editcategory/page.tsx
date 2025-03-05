@@ -1,7 +1,5 @@
 "use client"
 
-export const runtime = "nodejs";  // 👈 Força o ambiente Node.js
-
 import styles from './styles.module.scss';
 import { useEffect, useState } from 'react';
 import { api } from '@/services/api';
