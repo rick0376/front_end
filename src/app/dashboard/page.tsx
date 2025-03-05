@@ -3,9 +3,8 @@ import { api } from '@/services/api'
 import { getCookieServer } from '@/lib/cookieServer'
 import { OrderProps } from '@/lib/order.type'
 
-async function getOrders(): Promise<OrderProps[] | []>{
-  try{
-    const token = getCookieServer();
+async function getOrders(token: string): Promise<OrderProps[] | []> {
+  try {
 
     const response = await api.get("/orders", {
       headers: {
@@ -15,19 +14,19 @@ async function getOrders(): Promise<OrderProps[] | []>{
 
     return response.data || []
 
-  }catch(err){
+  } catch (err) {
     console.log(err);
     return [];
   }
 }
 
-export default async function Dashboard(){
+export default async function Dashboard() {
+  const token = await getCookieServer(); // Verificamos token e ai passamos para o getOrders
+  const orders = await getOrders(token!);
 
-  const orders = await getOrders();
-
-  return(
+  return (
     <>
-     <Orders orders={orders}/>
+      <Orders orders={orders} />
     </>
   )
 }
