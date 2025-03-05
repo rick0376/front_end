@@ -1,5 +1,3 @@
-export const runtime = 'nodejs';
-
 import axios from 'axios';
 
 // Criando a instância do axios

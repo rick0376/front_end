@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import { Orders } from "./components/orders";
 import { api } from '@/services/api'
 import { getCookieServer } from '@/lib/cookieServer'
