@@ -3,8 +3,7 @@ import { api } from '@/services/api'
 import { redirect } from 'next/navigation'
 import { getCookieServer } from '@/lib/cookieServer'
 
-export default async function Category() {
-  const token = await getCookieServer();
+export default function Category() {
 
   async function handleRegisterCategory(formData: FormData) {
     "use server"
@@ -17,6 +16,7 @@ export default async function Category() {
       name: name,
     }
 
+    const token = getCookieServer();
 
     await api.post("/category", data, {
       headers: {
