@@ -1,6 +1,6 @@
 "use client"
 
-import { use } from 'react'
+import { use, useEffect } from 'react'
 import styles from './styles.module.scss'
 import { RefreshCw } from 'lucide-react'
 import { OrderProps } from '@/lib/order.type'
@@ -26,6 +26,14 @@ export function Orders({ orders }: Props){
     toast.success("Pedidos atualizados com sucesso!")
   }
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      router.refresh();
+    }, 60000);
+
+    return () => clearInterval(interval); 
+  }, [router]);
+
   return(
   <>
     <main className={styles.container}>
@@ -43,7 +51,6 @@ export function Orders({ orders }: Props){
             Nenhum pedido aberto no momento...
           </span>
         )}
-
 
         {orders.map( order => (
           <button

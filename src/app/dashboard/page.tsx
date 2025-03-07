@@ -1,4 +1,4 @@
-import { Orders } from "./components/orders";
+import { Orders } from './components/orders';
 import { api } from '@/services/api'
 import { getCookieServer } from '@/lib/cookieServer'
 import { OrderProps } from '@/lib/order.type'
@@ -15,11 +15,12 @@ async function getOrders(): Promise<OrderProps[] | []>{
 
     return response.data || []
 
-  } catch(err){
+  }catch(err){
     console.log(err);
     return [];
   }
 }
+
 
 export default async function Dashboard(){
 
